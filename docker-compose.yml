@@ -1,0 +1,16 @@
+version: '3.9'
+services:
+  jekyll:
+    image: jekyll/jekyll:3.8.6
+    environment:
+      TZ : America/Sao_Paulo 
+      JEKYLL_GID : 1000
+      JEKYLL_UID : 1000
+    container_name: blog-jekyll
+    volumes:
+      - .:/srv/jekyll
+      - ./vendor/bundle/:/usr/local/bundle
+    ports:
+      - "4000:4000"
+    #command: jekyll new _blog
+    command: jekyll serve --watch --force_polling --verbose --trace
